@@ -1,3 +1,3 @@
 
 rootProject.name = "kotlin-kata"
-include("optics")
+include("optics", "coroutines")
