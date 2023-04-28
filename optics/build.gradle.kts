@@ -17,9 +17,8 @@ repositories {
 
 val arrowVersion = "1.2.0-RC"
 dependencies {
-   implementation(platform("io.arrow-kt:arrow-stack:${arrowVersion}"))
-   implementation("io.arrow-kt:arrow-core")
-   implementation("io.arrow-kt:arrow-optics")
+   implementation("io.arrow-kt:arrow-core:${arrowVersion}")
+   implementation("io.arrow-kt:arrow-optics:${arrowVersion}")
    ksp("io.arrow-kt:arrow-optics-ksp-plugin:$arrowVersion")
 
    testImplementation(kotlin("test"))
