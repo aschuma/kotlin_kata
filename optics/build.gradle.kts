@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.8.0"
-    id("com.google.devtools.ksp") version "1.8.0-1.0.8"
+    kotlin("jvm") version "1.8.20"
+    id("com.google.devtools.ksp") version "1.8.21-1.0.11"
     id("org.jmailen.kotlinter") version "3.11.1"
 
     idea
@@ -15,7 +15,7 @@ repositories {
     mavenCentral()
 }
 
-val arrowVersion = "1.1.4"
+val arrowVersion = "1.2.0-RC"
 dependencies {
    implementation(platform("io.arrow-kt:arrow-stack:${arrowVersion}"))
    implementation("io.arrow-kt:arrow-core")
