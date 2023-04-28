@@ -158,7 +158,7 @@ class Basic120Tests {
       // when/then
       e1.fold(
          ifLeft = { "" },
-         ifRight = ::booleanToString) shouldBe "IS FALSE.... :(" // empty is not found
-
+         ifRight = ::booleanToString
+      ) shouldBe "IS FALSE.... :(" // empty is not found
    }
 }
