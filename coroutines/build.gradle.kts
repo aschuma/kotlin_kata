@@ -1,44 +1,41 @@
 plugins {
-    kotlin("jvm") version "1.8.0"
-    id("com.google.devtools.ksp") version "1.8.0-1.0.8"
-    id("org.jmailen.kotlinter") version "3.11.1"
+  kotlin("jvm") version "1.8.20"
+  id("org.jmailen.kotlinter") version "3.11.1"
 
-    idea
-    application
+  idea
+  application
 }
 
 
-group = "aschuma.kotlin.kata.optics"
+group = "aschuma.kotlin.kata.coroutines"
 version = "1.0-SNAPSHOT"
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
-val arrowVersion = "1.1.4"
+val arrowVersion = "1.2.0-RC"
 dependencies {
-   implementation(platform("io.arrow-kt:arrow-stack:${arrowVersion}"))
-   implementation("io.arrow-kt:arrow-core")
-   implementation("io.arrow-kt:arrow-optics")
-   ksp("io.arrow-kt:arrow-optics-ksp-plugin:$arrowVersion")
-
-   testImplementation(kotlin("test"))
+  implementation(platform("io.arrow-kt:arrow-stack:${arrowVersion}"))
+  implementation("io.arrow-kt:arrow-core:${arrowVersion}")
+  testImplementation(kotlin("test"))
+  testImplementation("io.kotest:kotest-assertions-core:5.6.1")
 }
 
 kotlin {
-   sourceSets.main {
-      kotlin.srcDir("build/generated/ksp/main/kotlin")
-   }
+  sourceSets.main {
+    kotlin.srcDir("build/generated/ksp/main/kotlin")
+  }
 }
 
 tasks.test {
-    useJUnitPlatform()
+  useJUnitPlatform()
 }
 
 kotlin {
-    jvmToolchain(11)
+  jvmToolchain(11)
 }
 
 application {
-    mainClass.set("aschuma.kotlin.kata.optics.MainKt")
+  mainClass.set("aschuma.kotlin.kata.optics.MainKt")
 }
