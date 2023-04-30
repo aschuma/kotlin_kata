@@ -14,15 +14,28 @@ interface SeqScope<in T> {
 
 fun <T> seq(block: suspend SeqScope<T>.() -> Unit): Seq<T> = Seq<T> {
    val iterator = SeqBuilder<T>()
-   val unpackResult: Continuation<Unit> = Continuation(EmptyCoroutineContext, Result<Unit>::getOrThrow)
-   val newCoroutine: Continuation<Unit> = block.createCoroutine(iterator, unpackResult)
+   val unpackResult: Continuation<Unit> = Continuation(
+      context = EmptyCoroutineContext,
+      resumeWith = Result<Unit>::getOrThrow
+   )
+   val newCoroutine: Continuation<Unit> = block.createCoroutine(
+      receiver = iterator,
+      completion = unpackResult
+   )
    iterator.nextStep = newCoroutine
    iterator
 }
 
 fun <T> seqTrace(block: suspend SeqScope<T>.() -> Unit): Seq<T> = Seq<T> {
    val iterator = SeqBuilderWithTrace<T>()
-   val unpackResult: Continuation<Unit> = Continuation(EmptyCoroutineContext, Result<Unit>::getOrThrow)
-   iterator.nextStep = block.createCoroutine(receiver = iterator, completion = unpackResult)
+   val unpackResult: Continuation<Unit> = Continuation(
+      context = EmptyCoroutineContext,
+      resumeWith = Result<Unit>::getOrThrow
+   )
+   val newCoroutine = block.createCoroutine(
+      receiver = iterator,
+      completion = unpackResult
+   )
+   iterator.nextStep = newCoroutine
    iterator
 }
