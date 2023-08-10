@@ -24,12 +24,13 @@ class OpticsFilterIndexTest {
    fun `filter index mod test`() {
       val filterIndexStringByIndex: FilterIndex<List<String>, Int, String> = FilterIndex { p ->
          object : Every<List<String>, String> {
-            override fun <R> foldMap(M: Monoid<R>, s: List<String>, map: (String) -> R): R = M.run {
-               s.foldIndexed(empty()) { index, acc, a -> if (p(index)) acc.combine(map(a)) else acc }
+            @Deprecated("Monoid is being deprecated, use combine (A, A) -> A lambdas or method references with initial values instead.", replaceWith = ReplaceWith("foldMap(M.empty(), M::combine, source, map)", "arrow.optics.foldMap", "arrow.typeclasses.combine"))
+            override fun <R> foldMap(M: Monoid<R>, source: List<String>, map: (String) -> R): R = M.run {
+               source.foldIndexed(empty()) { index, acc, a -> if (p(index)) acc.combine(map(a)) else acc }
             }
 
-            override fun modify(s: List<String>, map: (focus: String) -> String): List<String> =
-               s.mapIndexed { index, a -> if (p(index)) map(a) else a }
+            override fun modify(source: List<String>, map: (focus: String) -> String): List<String> =
+               source.mapIndexed { index, a -> if (p(index)) map(a) else a }
          }
       }
 
