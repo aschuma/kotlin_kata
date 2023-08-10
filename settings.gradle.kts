@@ -5,5 +5,5 @@ plugins {
 }
 
 rootProject.name = "kotlin-kata"
-include("optics", "dsl", "coroutines")
+include("optics", "dsl", "coroutines", "serialization")
 
