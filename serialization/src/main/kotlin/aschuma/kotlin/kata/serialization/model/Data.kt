@@ -26,10 +26,6 @@ value class LastName(val value: String)
 @Serializable
 value class Age(val value: Int?)
 
-@JvmInline
-@Serializable
-value class Error(val value: String)
-
 @Serializable
 data class Person(val firstName: FirstName, val lastName: LastName, val age: Age?)
 
