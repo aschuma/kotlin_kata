@@ -1,41 +1,37 @@
 plugins {
-  kotlin("jvm") version "1.8.20"
-  id("org.jmailen.kotlinter") version "3.11.1"
+   kotlin("jvm")
+   id("org.jmailen.kotlinter") version "3.11.1"
 
-  idea
-  application
+   idea
+   application
 }
-
 
 group = "aschuma.kotlin.kata.coroutines"
 version = "1.0-SNAPSHOT"
 
 repositories {
-  mavenCentral()
+   mavenCentral()
 }
 
-val arrowVersion = "1.2.0-RC"
+
 dependencies {
-  implementation(platform("io.arrow-kt:arrow-stack:${arrowVersion}"))
-  implementation("io.arrow-kt:arrow-core:${arrowVersion}")
-  testImplementation(kotlin("test"))
-  testImplementation("io.kotest:kotest-assertions-core:5.6.1")
+   implementation(platform("io.arrow-kt:arrow-stack:1.2.0"))
+   implementation("io.arrow-kt:arrow-core")
+
+   testImplementation(kotlin("test"))
+   testImplementation("io.kotest:kotest-assertions-core:5.6.1")
+}
+
+tasks.named<Test>("test") {
+   useJUnitPlatform()
 }
 
 kotlin {
-  sourceSets.main {
-    kotlin.srcDir("build/generated/ksp/main/kotlin")
-  }
-}
-
-tasks.test {
-  useJUnitPlatform()
-}
-
-kotlin {
-  jvmToolchain(11)
+   jvmToolchain(17)
 }
 
 application {
-  mainClass.set("aschuma.kotlin.kata.optics.MainKt")
+   mainClass.set("aschuma.kotlin.kata.coroutines.MainKt")
 }
+
+

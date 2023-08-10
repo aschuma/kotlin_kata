@@ -52,11 +52,11 @@ class SeqBuilderWithTrace<T> : SeqScope<T>, Iterator<T> {
    }
 
    override suspend fun yield(value: T) {
-      println("S: yield " + value)
+      println("S: yield $value")
       nextValue = value
       state = State.Ready
       suspendCoroutine { c ->
-         println("S: yield suspend " + value)
+         println("S: yield suspend $value")
          nextStep = c
          COROUTINE_SUSPENDED
       }

@@ -1,7 +1,11 @@
 package aschuma.kotlin.kata.dsl
 
 import arrow.core.None
-import arrow.core.raise.*
+import arrow.core.raise.NullableRaise
+import arrow.core.raise.OptionRaise
+import arrow.core.raise.nullable
+import arrow.core.raise.option
+import arrow.core.raise.result
 import arrow.core.some
 import arrow.core.toOption
 import org.junit.jupiter.api.Test
@@ -60,6 +64,7 @@ class ComprehensionTest {
       assertEquals(
          expected = null,
          actual = nullable {
+            val self: NullableRaise = this
             val nonNullString: String = (null as String?).bind()
             "a".bind()
          }

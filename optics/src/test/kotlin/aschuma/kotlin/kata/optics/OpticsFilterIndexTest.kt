@@ -1,6 +1,7 @@
 package aschuma.kotlin.kata.optics
 
 import arrow.optics.Every
+import arrow.optics.PEvery
 import arrow.optics.typeclasses.FilterIndex
 import arrow.typeclasses.Monoid
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -11,7 +12,8 @@ class OpticsFilterIndexTest {
    @Test
    fun `filter index basic test`() {
       //  when
-      val updatedList = FilterIndex.list<Int>().filter { index -> index % 2 == 0 }
+      val filter: PEvery<List<Int>, List<Int>, Int, Int> = FilterIndex.list<Int>().filter { index -> index % 2 == 0 }
+      val updatedList = filter
          .getAll(listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
 
       // then

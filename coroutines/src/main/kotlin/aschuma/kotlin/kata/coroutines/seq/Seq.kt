@@ -1,8 +1,8 @@
 package aschuma.kotlin.kata.coroutines.seq
 
-import kotlin.coroutines.*
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.EmptyCoroutineContext
+import kotlin.coroutines.createCoroutine
 
 fun interface Seq<out T> {
    operator fun iterator(): Iterator<T>

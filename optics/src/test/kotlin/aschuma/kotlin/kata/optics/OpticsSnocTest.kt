@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test
 
 class OpticsSnocTest {
 
+   // "snoc" == "cons".reverse()
+
    @Test
-   fun `snok basic test`() {
+   fun `snoc basic test`() {
       // given
       val list = listOf(1, 2)
 
@@ -20,7 +22,7 @@ class OpticsSnocTest {
    }
 
    @Test
-   fun `unsnok basic test`() {
+   fun `unsnoc basic test`() {
       // given
       val list = listOf(1, 2, 3)
 
@@ -34,7 +36,7 @@ class OpticsSnocTest {
    }
 
    @Test
-   fun `unsnok basic empty test`() {
+   fun `unsnoc basic empty test`() {
       // given
       val list = emptyList<Int>()
 

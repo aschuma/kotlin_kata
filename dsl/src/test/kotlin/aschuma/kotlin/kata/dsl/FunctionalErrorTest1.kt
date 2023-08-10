@@ -1,7 +1,10 @@
 package aschuma.kotlin.kata.dsl
 
-import arrow.core.*
-import arrow.core.raise.*
+import arrow.core.Either
+import arrow.core.left
+import arrow.core.raise.either
+import arrow.core.raise.fold
+import arrow.core.right
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.fail
@@ -16,7 +19,6 @@ class FunctionalErrorTest1 {
 
    @Test
    fun `learning fp error handling 1_2_0 - right`() {
-
       // given/when
       val userE: Either<UserNotFound, User> = either { user() }
 
@@ -28,14 +30,15 @@ class FunctionalErrorTest1 {
       }
 
       // given/when/then
-      fold(block = { user() },
+      fold(
+         block = { user() },
          recover = { _: UserNotFound -> fail("Unexpected 2") },
-         transform = { u: User -> u shouldBe User(1) })
+         transform = { u: User -> u shouldBe User(1) }
+      )
    }
 
    @Test
    fun `learning fp error handling 1_2_0 - left`() {
-
       // given/when
       val userE: Either<UserNotFound, User> = either { raise(UserNotFound) }
 
@@ -47,8 +50,10 @@ class FunctionalErrorTest1 {
       }
 
       // given/when/then
-      fold(block = { raise(UserNotFound) },
+      fold(
+         block = { raise(UserNotFound) },
          recover = { u: UserNotFound -> u },
-         transform = { u: User -> fail("Unexpected 4") })
+         transform = { u: User -> fail("Unexpected 4") }
+      )
    }
 }

@@ -7,7 +7,7 @@ class SeqTest {
 
    @Test
    fun `basic seq test`() {
-      val seq = seq<Int> {
+      val seq = seq {
          yield(1)
          yield(2)
          yield(3)
@@ -66,7 +66,7 @@ class SeqTest {
          return hasNext
       }
 
-      val sequence = seqTrace<Int> {
+      val sequence: Seq<Int> = seqTrace {
          println("B -* yield 1")
          yield(1)
          println("B *-yield 1")

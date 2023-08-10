@@ -11,11 +11,11 @@ class OpticsLensTest {
       val person = Person("MyName", City("MyCity", Street("MyStreet")))
 
       // when
-      val updatedStreetPerson = Person.city.street.name.modify(person) { "MyNewStreet" }
+      val updatedStreetPerson = Person.city.street.name.modify(person) { oldStreetName -> "New$oldStreetName" }
 
       // then
       val manuallyUpdateStreetPerson =
-         person.copy(city = person.city.copy(street = person.city.street.copy(name = "MyNewStreet")))
+         person.copy(city = person.city.copy(street = person.city.street.copy(name = "NewMyStreet")))
       assertEquals(manuallyUpdateStreetPerson, updatedStreetPerson)
    }
 

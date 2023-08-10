@@ -8,17 +8,14 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 indent_size = 2
 
-
-[*.{kt,java}]
+[*.{kt,kts,java}]
 indent_size = 3
-
 
 [*.bat]
 end_of_line = crlf
 
+[*.js]
+indent_size = 2
 
-# [*.js]
-# indent_size = 2
-
-# [Makefile]
-# indent_style = tab
+[Makefile]
+indent_style = tab

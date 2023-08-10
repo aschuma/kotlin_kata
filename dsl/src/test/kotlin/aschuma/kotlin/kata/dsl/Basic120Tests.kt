@@ -1,7 +1,20 @@
 package aschuma.kotlin.kata.dsl
 
-import arrow.core.*
-import arrow.core.raise.*
+import arrow.core.Either
+import arrow.core.NonEmptyList
+import arrow.core.left
+import arrow.core.mapOrAccumulate
+import arrow.core.nel
+import arrow.core.nonEmptyListOf
+import arrow.core.raise.Raise
+import arrow.core.raise.RaiseAccumulate
+import arrow.core.raise.either
+import arrow.core.raise.ensure
+import arrow.core.raise.ensureNotNull
+import arrow.core.raise.zipOrAccumulate
+import arrow.core.right
+import arrow.core.traverse
+import arrow.core.zip
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
@@ -134,7 +147,7 @@ class Basic120Tests {
             val self: RaiseAccumulate<String> = this
             one().bind()
          }, action2 = {
-               val self: RaiseAccumulate<String> = this
+               val selfInner: RaiseAccumulate<String> = this
                two().bindNel()
             }) { x, y -> x + y }
       } shouldBe nonEmptyListOf("error-1", "error-2", "error-3").left()
