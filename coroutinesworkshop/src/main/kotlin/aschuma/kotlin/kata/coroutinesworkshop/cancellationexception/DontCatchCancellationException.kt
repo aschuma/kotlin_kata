@@ -1,6 +1,10 @@
 package aschuma.kotlin.kata.coroutinesworkshop.cancellationexception
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 suspend fun doSomeWorkThatMayFail() {
    println("I'm working...")

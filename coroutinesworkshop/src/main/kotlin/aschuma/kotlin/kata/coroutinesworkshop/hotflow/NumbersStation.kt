@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-
 class NumbersStation {
    private val scope = CoroutineScope(SupervisorJob())
 
@@ -39,7 +38,6 @@ suspend fun main() {
       }
    }
 }
-
 
 suspend fun getNewNumber(): Int {
    val number = Random.nextInt()

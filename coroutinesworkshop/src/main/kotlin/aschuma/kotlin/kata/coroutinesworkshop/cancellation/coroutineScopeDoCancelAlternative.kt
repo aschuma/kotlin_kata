@@ -1,6 +1,14 @@
 package aschuma.kotlin.kata.coroutinesworkshop.cancellation
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.yield
 
 suspend fun main() = runBlocking {
    val myScope = CoroutineScope(Dispatchers.IO)
@@ -46,7 +54,6 @@ suspend fun main() = runBlocking {
          yield() // the nicest solution - Let the other coroutines play
       }
    }
-
 
    delay(4000)
    myScope.cancel()

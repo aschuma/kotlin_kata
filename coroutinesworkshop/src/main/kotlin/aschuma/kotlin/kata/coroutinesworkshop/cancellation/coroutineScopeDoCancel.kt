@@ -1,6 +1,9 @@
 package aschuma.kotlin.kata.coroutinesworkshop.cancellation
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 suspend fun main() {
    coroutineScope {
@@ -20,7 +23,6 @@ suspend fun main() {
       cancel()
    }
 }
-
 
 // Output:
 //
