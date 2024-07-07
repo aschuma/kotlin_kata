@@ -15,7 +15,7 @@ repositories {
 
 
 dependencies {
-   implementation(platform("io.arrow-kt:arrow-stack:1.2.0"))
+   implementation(platform("io.arrow-kt:arrow-stack:1.2.4"))
    implementation("io.arrow-kt:arrow-core")
 
    val kotlinxCoroutinesVersion = "1.7.3"

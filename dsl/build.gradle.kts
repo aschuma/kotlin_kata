@@ -15,8 +15,8 @@ repositories {
 
 
 dependencies {
-   implementation(platform("io.arrow-kt:arrow-stack:1.2.0"))
-   implementation("io.arrow-kt:arrow-core")
+   implementation(platform("io.arrow-kt:arrow-stack:1.2.4"))
+   implementation("io.arrow-kt:arrow-core:1.2.4")
 
    testImplementation(kotlin("test"))
    testImplementation("io.kotest:kotest-assertions-core:5.6.1")
