@@ -121,7 +121,7 @@ class OperatorTest {
    @Test
    fun `simple test - list f compose 4`() {
       // when
-      val vals = funs invoke 4 pipe lift { x: Int -> x * 4 }
+      val vals = funs invoke 4 pipe lift { it * 4 }
 
       // then
       assertEquals(vals, listOf(20, 32, 4))
@@ -130,7 +130,8 @@ class OperatorTest {
    @Test
    fun `simple test - list f compose 5`() {
       // when
-      val vals = funs invoke 4 pipe +{ x: Int -> x * 4 }
+      val times4 = { x: Int -> x * 4 }
+      val vals = funs invoke 4 pipe +times4
 
       // then
       assertEquals(vals, listOf(20, 32, 4))
