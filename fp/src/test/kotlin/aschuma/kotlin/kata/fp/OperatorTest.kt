@@ -4,7 +4,7 @@ import arrow.core.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class FunCompTest {
+class OperatorTest {
 
    private val funs: List<(Int) -> Int> = listOf({ x: Int -> x + 1 }, { x: Int -> x * 2 }, { x: Int -> x - 3 })
 
@@ -14,7 +14,11 @@ class FunCompTest {
 
    infix operator fun <A, B, C> ((B) -> C).times(fList: List<(A) -> B>): List<(A) -> C> = fList.map { f -> this * f }
 
-   fun ((Int) -> Int).lift(): (List<Int>) -> List<Int> = { xs: List<Int> -> xs.map(this) }
+   operator fun ((Int) -> Int).unaryPlus(): (List<Int>) -> List<Int> = { xs: List<Int> -> xs.map(this) }
+
+   infix fun lift(f: (Int) -> Int): (List<Int>) -> List<Int> = f.unaryPlus()
+
+   infix fun <A,B> A.pipe(f: (A) -> B) : B = f(this)
 
    @Test
    fun `simple test - list f app - A`() {
@@ -117,7 +121,16 @@ class FunCompTest {
    @Test
    fun `simple test - list f compose 4`() {
       // when
-      val vals = { x: Int -> x * 4 }.lift()(funs invoke 4)
+      val vals = funs invoke 4 pipe lift { x: Int -> x * 4 }
+
+      // then
+      assertEquals(vals, listOf(20, 32, 4))
+   }
+
+   @Test
+   fun `simple test - list f compose 5`() {
+      // when
+      val vals = funs invoke 4 pipe +{ x: Int -> x * 4 }
 
       // then
       assertEquals(vals, listOf(20, 32, 4))
